@@ -1,2 +1,6 @@
 # gojeh-farangi
-Continued aggressive learning and techniques.
+سیستم فلش کارت برای یادگیری فارسی.
+
+گوجه فرنگی:
+
+سیستم فلش کارت برای یادگیری فارسی.
