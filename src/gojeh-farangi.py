@@ -22,10 +22,10 @@ class GojehFarangi:
 def main(file_name):
     gf = GojehFarangi(file_name)
     gf.load_words()
-    picks = gf.pick_n_words(5).head()
-    print(picks.iloc[0])
-    for row in picks.iloc[1:]:
-        print(row)
+    picks = gf.pick_n_words(5)
+    print(picks.iloc[0, :]['English'])
+    for i in range(1, 5):
+        print(picks.iloc[i, :]['English'], picks.iloc[i, :]['Farsi'])
 
 
 if __name__ == "__main__":
