@@ -32,7 +32,7 @@ class GojehFarangi:
             print(f'pick: {picks.iloc[0, :]["Farsi"]}')
             self.create_guesses()
             for j, i in enumerate(self.choices):
-                print(j, picks.iloc[i, :]['English'], picks.iloc[i, :]['Farsi'])
+                print(j, picks.iloc[i, :]['English'])
             value = int(input('Please enter a number choice: '))
             print(self.choices[value] == 0)
 
