@@ -27,18 +27,19 @@ class GojehFarangi:
 
     def play(self):
         self.load_words()
-        picks = self.pick_n_words(5)
-        print(f'pick: {picks.iloc[0, :]["Farsi"]}')
-        self.create_guesses()
-        for i in self.choices:
-            print(i, picks.iloc[i, :]['English'], picks.iloc[i, :]['Farsi'])
+        for game in range(0, 5):
+            picks = self.pick_n_words(5)
+            print(f'pick: {picks.iloc[0, :]["Farsi"]}')
+            self.create_guesses()
+            for j, i in enumerate(self.choices):
+                print(j, picks.iloc[i, :]['English'], picks.iloc[i, :]['Farsi'])
+            value = int(input('Please enter a number choice: '))
+            print(self.choices[value] == 0)
 
 
 def main(file_name):
     gf = GojehFarangi(file_name)
     gf.load_words()
-    picks = gf.pick_n_words(5)
-    gf.create_guesses()
     gf.play()
 
 
