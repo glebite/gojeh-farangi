@@ -38,8 +38,8 @@ def main(file_name):
     gf = GojehFarangi(file_name)
     gf.load_words()
     picks = gf.pick_n_words(5)
-    print(picks.iloc[0, :]['Farsi'])
     gf.create_guesses()
+    gf.play()
 
 
 if __name__ == "__main__":
