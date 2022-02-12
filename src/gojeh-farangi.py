@@ -12,6 +12,8 @@ class GojehFarangi:
         # 5 games/tries
         self.counter = 5
         self.file_name = file_name
+        self.success = 0
+        self.failures = 0
 
     def load_words(self):
         self.words = pandas.read_excel(self.file_name)
@@ -32,9 +34,13 @@ class GojehFarangi:
             print(f'pick: {picks.iloc[0, :]["Farsi"]}')
             self.create_guesses()
             for j, i in enumerate(self.choices):
-                print(j, picks.iloc[i, :]['English'])
+                print(f"\t{j} {picks.iloc[i, :]['English']}")
             value = int(input('Please enter a number choice: '))
-            print(self.choices[value] == 0)
+            if self.choices[value] == 0:
+                self.success += 1
+            else:
+                self.failures += 1
+            print(f'Pass: {self.success} Fail: {self.failures}')
 
 
 def main(file_name):
