@@ -6,11 +6,13 @@ import sys
 import pandas
 import random
 
+GAME_SIZE = 5
+
 
 class GojehFarangi:
     def __init__(self, file_name):
         # 5 games/tries
-        self.counter = 5
+        self.counter = GAME_SIZE
         self.file_name = file_name
         self.success = 0
         self.failures = 0
@@ -24,13 +26,13 @@ class GojehFarangi:
         return self.picks
 
     def create_guesses(self):
-        self.choices = [i for i in range(0, 5)]
+        self.choices = [i for i in range(0, 5)]                
         random.shuffle(self.choices)
         return self.choices
 
     def play(self):
         self.load_words()
-        for game in range(0, 5):
+        for game in range(0, GAME_SIZE):
             picks = self.pick_n_words(5)
             print(f'pick: {picks.iloc[0, :]["Farsi"]}')
             self.create_guesses()
@@ -44,6 +46,9 @@ class GojehFarangi:
                 self.failed_words.append(picks.iloc[0, :]['Farsi'])
             print(f'Pass: {self.success} Fail: {self.failures}')
         print(self.failed_words)
+        with open('failures.txt', 'w+') as fp:
+            for word in self.failed_words:
+                fp.write(word + '\n')
 
 
 def main(file_name):
