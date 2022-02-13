@@ -14,6 +14,7 @@ class GojehFarangi:
         self.file_name = file_name
         self.success = 0
         self.failures = 0
+        self.failed_words = list()
 
     def load_words(self):
         self.words = pandas.read_excel(self.file_name)
@@ -40,7 +41,9 @@ class GojehFarangi:
                 self.success += 1
             else:
                 self.failures += 1
+                self.failed_words.append(picks.iloc[0, :]['Farsi'])
             print(f'Pass: {self.success} Fail: {self.failures}')
+        print(self.failed_words)
 
 
 def main(file_name):
