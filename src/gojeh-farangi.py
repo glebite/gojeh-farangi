@@ -11,7 +11,6 @@ GAME_SIZE = 5
 
 class GojehFarangi:
     def __init__(self, file_name):
-        # 5 games/tries
         self.counter = GAME_SIZE
         self.file_name = file_name
         self.success = 0
@@ -26,7 +25,7 @@ class GojehFarangi:
         return self.picks
 
     def create_guesses(self):
-        self.choices = [i for i in range(0, 5)]                
+        self.choices = [i for i in range(0, 5)]
         random.shuffle(self.choices)
         return self.choices
 
