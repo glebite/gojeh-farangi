@@ -42,6 +42,7 @@ class GojehFarangi:
                 self.success += 1
             else:
                 self.failures += 1
+                print(f'Should have been: {picks.iloc[0]["English"]}')
                 self.failed_words.append(picks.iloc[0, :]['Farsi'])
             print(f'Pass: {self.success} Fail: {self.failures}')
         print(self.failed_words)
