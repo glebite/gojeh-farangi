@@ -10,8 +10,8 @@ GAME_SIZE = 5
 
 
 class GojehFarangi:
-    def __init__(self, file_name):
-        self.counter = GAME_SIZE
+    def __init__(self, file_name, game_size=GAME_SIZE):
+        self.counter = int(game_size)
         self.file_name = file_name
         self.success = 0
         self.failures = 0
@@ -31,9 +31,9 @@ class GojehFarangi:
 
     def play(self):
         self.load_words()
-        for game in range(0, GAME_SIZE):
+        for game in range(0, self.counter):
             picks = self.pick_n_words(5)
-            print(f'pick: {picks.iloc[0, :]["Farsi"]}')
+            print(f'\npick: {picks.iloc[0, :]["Farsi"]} => {picks.iloc[0, :]["Pronunciation"]}')
             self.create_guesses()
             for j, i in enumerate(self.choices):
                 print(f"\t{j} {picks.iloc[i, :]['English']}")
@@ -51,11 +51,12 @@ class GojehFarangi:
                 fp.write(word + '\n')
 
 
-def main(file_name):
-    gf = GojehFarangi(file_name)
+def main(args):
+    print(args)
+    gf = GojehFarangi(args[1], args[2])
     gf.load_words()
     gf.play()
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv)
