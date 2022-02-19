@@ -94,9 +94,19 @@ class GojehFarangi:
 
 
 def main(args):
+    """main - takes the brunt of fun from the if dunder name
+
+    TODO: IOU more checking, change to getopts?
+
+    params:
+    args - list of parameters originating from sys.argv
+
+    returns:
+    n/a
+
+    raises:
+    n/a
     """
-    """
-    print(args)
     gf = GojehFarangi(args[1], args[2])
     gf.load_words()
     gf.play()
