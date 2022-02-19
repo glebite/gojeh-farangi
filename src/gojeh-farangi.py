@@ -33,7 +33,8 @@ class GojehFarangi:
         self.load_words()
         for game in range(0, self.counter):
             picks = self.pick_n_words(5)
-            print(f'\npick: {picks.iloc[0, :]["Farsi"]} => {picks.iloc[0, :]["Pronunciation"]}')
+            print(f'\npick: {picks.iloc[0, :]["Farsi"]}'
+                  f' => {picks.iloc[0, :]["Pronunciation"]}')
             self.create_guesses()
             for j, i in enumerate(self.choices):
                 print(f"\t{j} {picks.iloc[i, :]['English']}")
@@ -46,7 +47,7 @@ class GojehFarangi:
                 self.failed_words.append(picks.iloc[0, :]['Farsi'])
             print(f'Pass: {self.success} Fail: {self.failures}')
         print(self.failed_words)
-        with open('failures.txt', 'w+') as fp:
+        with open('failures.txt', 'a') as fp:
             for word in self.failed_words:
                 fp.write(word + '\n')
 
