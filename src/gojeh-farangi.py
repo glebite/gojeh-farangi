@@ -10,7 +10,22 @@ GAME_SIZE = 5
 
 
 class GojehFarangi:
+    """
+    """
     def __init__(self, file_name, game_size=GAME_SIZE):
+        """__init__ - constructor like usual
+
+        params:
+        file_name - string - file containing CSV with
+                             Farsi word, pronounciation, and English
+        game_size - int    - number of rounds to play
+
+        returns:
+        n/a
+
+        raises:
+        n/a
+        """
         self.counter = int(game_size)
         self.file_name = file_name
         self.success = 0
@@ -18,18 +33,28 @@ class GojehFarangi:
         self.failed_words = list()
 
     def load_words(self):
+        """load_words - read in from the file 
+
+        TODO: IOU file existence checking and errors
+        """
         self.words = pandas.read_excel(self.file_name)
 
     def pick_n_words(self, word_count):
+        """
+        """
         self.picks = self.words.sample(word_count)
         return self.picks
 
     def create_guesses(self):
+        """
+        """
         self.choices = [i for i in range(0, 5)]
         random.shuffle(self.choices)
         return self.choices
 
     def play(self):
+        """
+        """
         self.load_words()
         for game in range(0, self.counter):
             picks = self.pick_n_words(5)
@@ -53,6 +78,8 @@ class GojehFarangi:
 
 
 def main(args):
+    """
+    """
     print(args)
     gf = GojehFarangi(args[1], args[2])
     gf.load_words()
