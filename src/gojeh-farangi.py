@@ -40,15 +40,31 @@ class GojehFarangi:
         self.words = pandas.read_excel(self.file_name)
 
     def pick_n_words(self, word_count):
-        """
+        """pick_n_words - select a random selection of words
+
+        params:
+        word_count - int - a count of words to pick_n_words
+
+        returns:
+        self.picks - list - list of random words from the file
+
+        raises:
+        n/a
         """
         self.picks = self.words.sample(word_count)
         return self.picks
 
     def create_guesses(self):
+        """create_guesses - take the choices and randomize them
+
+        params:
+
+        returns:
+
+        raises:
+
         """
-        """
-        self.choices = [i for i in range(0, 5)]
+        self.choices = [i for i in range(0, self.counter)]
         random.shuffle(self.choices)
         return self.choices
 
