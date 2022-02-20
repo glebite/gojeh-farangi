@@ -7,12 +7,13 @@ import pandas
 import random
 
 GAME_SIZE = 5
+NUMBER_OF_GAMES = 5
 
 
 class GojehFarangi:
     """
     """
-    def __init__(self, file_name, game_size=GAME_SIZE):
+    def __init__(self, file_name, game_size=NUMBER_OF_GAMES):
         """__init__ - constructor like usual
 
         params:
@@ -69,11 +70,29 @@ class GojehFarangi:
         return self.choices
 
     def play(self):
-        """
+        """play - play the game: wheeee!
+
+        Essentially, loops through NUMBER_OF_GAMES and presents
+        the user with a words written in Farsi, and 5 choices to
+        pick from with the English definition.  The user picks from
+        0 to 4 and if there is a match, the player scores a success.
+
+        In the case of a failure, the list of failed words gets stored
+        in a failures.txt file to be consumed in future implementations.
+
+        params:
+        n/a
+
+        returns:
+        n/a
+
+        raises:
+        n/a
         """
         self.load_words()
         for game in range(0, self.counter):
-            picks = self.pick_n_words(5)
+            picks = self.pick_n_words(NUMBER_OF_GAMES)
+            print(f'Game: {game} of {NUMBER_OF_GAMES}')
             print(f'\npick: {picks.iloc[0, :]["Farsi"]}'
                   f' => {picks.iloc[0, :]["Pronunciation"]}')
             self.create_guesses()
