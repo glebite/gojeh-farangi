@@ -5,6 +5,7 @@ gojeh-farangi.py
 import sys
 import pandas
 import random
+import getopt
 
 GAME_SIZE = 5
 NUMBER_OF_GAMES = 5
@@ -34,7 +35,7 @@ class GojehFarangi:
         self.failed_words = list()
 
     def load_words(self):
-        """load_words - read in from the file 
+        """load_words - read in from the file
 
         TODO: IOU file existence checking and errors
         """
@@ -65,7 +66,7 @@ class GojehFarangi:
         raises:
 
         """
-        self.choices = [i for i in range(0, self.counter)]
+        self.choices = [i for i in range(0, GAME_SIZE)]
         random.shuffle(self.choices)
         return self.choices
 
@@ -90,9 +91,9 @@ class GojehFarangi:
         n/a
         """
         self.load_words()
-        for game in range(0, self.counter):
-            picks = self.pick_n_words(NUMBER_OF_GAMES)
-            print(f'Game: {game} of {NUMBER_OF_GAMES}')
+        for game in range(0, GAME_SIZE):
+            picks = self.pick_n_words(GAME_SIZE)
+            print(f'Game: {game}')
             print(f'\npick: {picks.iloc[0, :]["Farsi"]}'
                   f' => {picks.iloc[0, :]["Pronunciation"]}')
             self.create_guesses()
@@ -112,7 +113,11 @@ class GojehFarangi:
                 fp.write(word + '\n')
 
 
-def main(args):
+def usage():
+    print("How to use this tool...")
+
+
+def main():
     """main - takes the brunt of fun from the if dunder name
 
     TODO: IOU more checking, change to getopts?
@@ -126,10 +131,30 @@ def main(args):
     raises:
     n/a
     """
-    gf = GojehFarangi(args[1], args[2])
+    try:
+        opts, args = getopt.getopt(sys.argv[1:],
+                                   "h",
+                                   ["help", "file=", "game_size="])
+    except getopt.GetoptError as err:
+        print(err)
+        usage()
+        sys.exit(2)
+    file_name = None
+    number_of_games = NUMBER_OF_GAMES
+    for o, a in opts:
+        print(o, a)
+        if o in ("-h", "--help"):
+            usage()
+            sys.exit()
+        elif o in ("--file"):
+            file_name = a
+        elif o in ("--game_size"):
+            number_of_games = a
+
+    gf = GojehFarangi(file_name, number_of_games)
     gf.load_words()
     gf.play()
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()
