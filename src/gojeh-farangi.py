@@ -114,7 +114,11 @@ class GojehFarangi:
 
 
 def usage():
-    print("How to use this tool...")
+    print('Usage: gojeh-farangi.py [OPTION]...')
+    print('Play a flashcard game to help with word recognition.')
+    print('\nOptions.')
+    print('--file            data file location and name (excel format)')
+    print('--game_size       number of words to guess')
 
 
 def main():
