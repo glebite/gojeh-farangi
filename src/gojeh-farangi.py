@@ -124,7 +124,7 @@ def usage():
 def main():
     """main - takes the brunt of fun from the if dunder name
 
-    TODO: IOU more checking, change to getopts?
+    TODO: IOU more checking
 
     params:
     args - list of parameters originating from sys.argv
@@ -145,15 +145,15 @@ def main():
         sys.exit(2)
     file_name = None
     number_of_games = NUMBER_OF_GAMES
-    for o, a in opts:
-        print(o, a)
-        if o in ("-h", "--help"):
+    for option, argument in opts:
+        print(option, argument)
+        if option in ("-h", "--help"):
             usage()
             sys.exit()
-        elif o in ("--file"):
-            file_name = a
-        elif o in ("--game_size"):
-            number_of_games = a
+        elif option in ("--file"):
+            file_name = argument
+        elif option in ("--game_size"):
+            number_of_games = argument
 
     gf = GojehFarangi(file_name, number_of_games)
     gf.load_words()
