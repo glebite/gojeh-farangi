@@ -12,7 +12,7 @@ NUMBER_OF_GAMES = 5
 
 
 class GojehFarangi:
-    """
+    """GojehFarangi - the fun begins!
     """
     def __init__(self, file_name, game_size=NUMBER_OF_GAMES):
         """__init__ - constructor like usual
@@ -60,11 +60,13 @@ class GojehFarangi:
         """create_guesses - take the choices and randomize them
 
         params:
+        n/a
 
         returns:
+        n/a
 
         raises:
-
+        n/a
         """
         self.choices = [i for i in range(0, GAME_SIZE)]
         random.shuffle(self.choices)
