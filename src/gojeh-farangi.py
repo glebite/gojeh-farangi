@@ -39,10 +39,14 @@ class GojehFarangi:
 
         TODO: IOU file existence checking and errors
         """
-        self.words = pandas.read_excel(self.file_name)
+        try:
+            self.words = pandas.read_excel(self.file_name)
+        except FileNotFoundError:
+            print(f'{self.file_name} not found - exiting.')
+            sys.exit(0)
 
     def pick_n_words(self, word_count):
-        """pick_n_words - select a random selection of words
+        """pick_n_words - select a Erandom selection of words
 
         params:
         word_count - int - a count of words to pick_n_words
