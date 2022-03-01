@@ -127,20 +127,7 @@ def usage():
     print('--game_size       number of words to guess')
 
 
-def main():
-    """main - takes the brunt of fun from the if dunder name
-
-    TODO: IOU more checking
-
-    params:
-    args - list of parameters originating from sys.argv
-
-    returns:
-    n/a
-
-    raises:
-    n/a
-    """
+def parse_input():
     try:
         opts, args = getopt.getopt(sys.argv[1:],
                                    "h",
@@ -160,6 +147,25 @@ def main():
             file_name = argument
         elif option in ("--game_size"):
             number_of_games = argument
+    return file_name, number_of_games
+
+
+def main():
+    """main - takes the brunt of fun from the if dunder name
+
+    TODO: IOU more checking
+
+    params:
+    args - list of parameters originating from sys.argv
+
+    returns:
+    n/a
+
+    raises:
+    n/a
+    """
+
+    file_name, number_of_games = parse_input()
 
     gf = GojehFarangi(file_name, number_of_games)
     gf.load_words()
