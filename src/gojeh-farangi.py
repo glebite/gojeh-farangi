@@ -130,6 +130,16 @@ def usage():
 
 def parse_input():
     """parse_input
+
+    params:
+    n/a
+
+    returns:
+    file_name       - string - name of the game file to load
+    number_of_games - string - number of games to iterate
+
+    raises:
+    n/a
     """
     try:
         opts, args = getopt.getopt(sys.argv[1:],
@@ -142,7 +152,6 @@ def parse_input():
     file_name = None
     number_of_games = NUMBER_OF_GAMES
     for option, argument in opts:
-        print(option, argument)
         if option in ("-h", "--help"):
             usage()
             sys.exit()
