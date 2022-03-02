@@ -1,6 +1,7 @@
 """
 gojeh-farangi.py
 
+A flashcard system to assist with my learning Farsi.
 """
 import sys
 import pandas
@@ -128,6 +129,8 @@ def usage():
 
 
 def parse_input():
+    """parse_input
+    """
     try:
         opts, args = getopt.getopt(sys.argv[1:],
                                    "h",
