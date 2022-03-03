@@ -64,6 +64,9 @@ class GojehFarangi:
     def create_guesses(self):
         """create_guesses - take the choices and randomize them
 
+        This just randomizes the indices list - it is not creating
+        a randomized list of real choices.
+
         params:
         n/a
 
@@ -73,9 +76,9 @@ class GojehFarangi:
         raises:
         n/a
         """
-        self.choices = [i for i in range(0, GAME_SIZE)]
-        random.shuffle(self.choices)
-        return self.choices
+        self.indices = [i for i in range(0, GAME_SIZE)]
+        random.shuffle(self.indices)
+        return self.indices
 
     def play(self):
         """play - play the game: wheeee!
@@ -104,10 +107,10 @@ class GojehFarangi:
             print(f'\npick: {picks.iloc[0, :]["Farsi"]}'
                   f' => {picks.iloc[0, :]["Pronunciation"]}')
             self.create_guesses()
-            for j, i in enumerate(self.choices):
+            for j, i in enumerate(self.indices):
                 print(f"\t{j} {picks.iloc[i, :]['English']}")
             value = int(input('Please enter a number choice: '))
-            if self.choices[value] == 0:
+            if self.indices[value] == 0:
                 self.success += 1
             else:
                 self.failures += 1
@@ -176,7 +179,6 @@ def main():
     raises:
     n/a
     """
-
     file_name, number_of_games = parse_input()
 
     gf = GojehFarangi(file_name, number_of_games)
