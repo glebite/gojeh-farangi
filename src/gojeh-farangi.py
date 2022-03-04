@@ -38,7 +38,6 @@ class GojehFarangi:
     def load_words(self):
         """load_words - read in from the file
 
-        TODO: IOU file existence checking and errors
         """
         try:
             self.words = pandas.read_excel(self.file_name)
@@ -56,8 +55,10 @@ class GojehFarangi:
         self.picks - list - list of random words from the file
 
         raises:
-        n/a
+        ValueError - exception - handling cases word_count <= 2
         """
+        if word_count <= 2:
+            raise ValueError(f'word_count {word_count} <= 2 - expected > 2')
         self.picks = self.words.sample(word_count)
         return self.picks
 
