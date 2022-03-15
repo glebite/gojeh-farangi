@@ -34,6 +34,7 @@ class GojehFarangi:
         self.success = 0
         self.failures = 0
         self.failed_words = list()
+        self.stored_failures = list()        
 
     def load_words(self):
         """load_words - read in from the file
@@ -80,6 +81,14 @@ class GojehFarangi:
         self.indices = [i for i in range(0, GAME_SIZE)]
         random.shuffle(self.indices)
         return self.indices
+
+    def load_failures(self, failure_file):
+        """
+        """
+        with open(failure_file) as fp:
+            lines = fp.readlines()
+        for line in lines:
+            self.stored_failures.append(line)
 
     def play(self):
         """play - play the game: wheeee!
