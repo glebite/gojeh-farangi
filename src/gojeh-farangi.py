@@ -197,6 +197,7 @@ def main():
     gf = GojehFarangi(file_name, number_of_games)
     gf.load_failures()
     gf.load_words()
+    print(gf.words)
     gf.play()
 
 
