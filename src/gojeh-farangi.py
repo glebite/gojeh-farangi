@@ -85,10 +85,13 @@ class GojehFarangi:
     def load_failures(self, failure_file):
         """
         """
-        with open(failure_file) as fp:
-            lines = fp.readlines()
-        for line in lines:
-            self.stored_failures.append(line)
+        try:
+            with open(failure_file) as fp:
+                lines = fp.readlines()
+            for line in lines:
+                self.stored_failures.append(line)
+        except Exception as e:
+            pass
 
     def play(self):
         """play - play the game: wheeee!
@@ -192,6 +195,7 @@ def main():
     file_name, number_of_games = parse_input()
 
     gf = GojehFarangi(file_name, number_of_games)
+    gf.load_failures()
     gf.load_words()
     gf.play()
 
