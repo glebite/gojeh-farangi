@@ -82,16 +82,18 @@ class GojehFarangi:
         random.shuffle(self.indices)
         return self.indices
 
-    def load_failures(self, failure_file):
+    def load_failures(self, failure_file=None):
         """
         """
-        try:
-            with open(failure_file) as fp:
-                lines = fp.readlines()
-            for line in lines:
-                self.stored_failures.append(line)
-        except Exception as e:
-            pass
+        if failure_file:
+            try:
+                with open(failure_file) as fp:
+                    lines = fp.readlines()
+                    for line in lines:
+                        self.stored_failures.append(line)
+            except Exception as e:
+                pass
+        return
 
     def play(self):
         """play - play the game: wheeee!
